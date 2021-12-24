@@ -13,22 +13,46 @@ namespace UserList.Controllers
         //create object from the application db
         private readonly ApplicationDBContext _db;
 
+        //Create a object from user
+        [BindProperty]
+        public User User { get; set; }
+
         //Initialize the contructor. Used the dependency injection
         public UsersController(ApplicationDBContext db)
         {
             _db = db;
         }
         
-        //Create a object from user
-        [BindProperty]
-        public User User { get; set; }
 
         public IActionResult Index()
         {
             return View();
         }
 
-        #region
+        //UPSERT for edit and add a book
+        //There can be a id or not (?) Parameter can be nullable
+        public IActionResult Upsert(int? id )
+        {
+            User = new User();
+            if (id == null)
+            {
+                //create
+                //new object
+                return View(User);
+            }
+            //If it is null, this is update
+            //retrieve the user from db
+            User = _db.Users.FirstOrDefault(u => u.ID == id);
+            if (User == null)
+            {
+                //If no user
+                return NotFound();
+            }
+            //return the book that we found in the DB
+            return View(User);
+        }
+
+        #region API Call
         //GET
         [HttpGet]
         public async Task<IActionResult> GetAll()
