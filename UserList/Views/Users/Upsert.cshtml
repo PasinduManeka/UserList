@@ -1,7 +1,7 @@
 ﻿<!--We pass the User model from the controlle-->
 @model UserList.Models.User
 
-<!--We have to check it is add or edit using Model.ID-->>
+<!--We have to check it is add or edit using Model.ID-->
 
 <br />
 <h2 class="text-info">@(Model.ID!=0 ? "Edit" : "Create") User</h2>
@@ -61,4 +61,8 @@
         </div>
     </form>
 </div>
+
+@section Scripts{ 
+ <partial name="_ValidationScriptsPartial" />
+}
 
