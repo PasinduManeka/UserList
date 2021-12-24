@@ -4,6 +4,7 @@ $(document).ready(function () {
     loadDataTable();
 });
 
+//GETAll
 function loadDataTable() {
     dataTable = $('#DT_load').DataTable({
         "ajax": {
@@ -38,6 +39,7 @@ function loadDataTable() {
     });
 }
 
+//Delete
 function Delete(url) {
     swal({
         title: "Are you sure?",
