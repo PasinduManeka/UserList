@@ -14,17 +14,17 @@ function loadDataTable() {
         },
         "columns": [
             { "data": "name", "width": "20%" },
-            { "data": "author", "width": "20%" },
-            { "data": "isbn", "width": "20%" },
+            { "data": "age", "width": "20%" },
+            { "data": "city", "width": "20%" },
             {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                        <a href="/Users/Upsert?id=${data}" class='btn btn-success text-white' style='cursor:pointer; width:70px;'>
+                        <a href="/Users/Upsert?id=${data}" class='btn btn-outline-success' style='cursor:pointer; width:70px;'>
                             Edit
                         </a>
                         &nbsp;
-                        <a class='btn btn-danger text-white' style='cursor:pointer; width:70px;'
+                        <a class='btn btn-outline-danger' style='cursor:pointer; width:70px;'
                             onclick=Delete('/users/Delete?id='+${data})>
                             Delete
                         </a>

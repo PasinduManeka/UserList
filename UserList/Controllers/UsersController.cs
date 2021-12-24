@@ -15,7 +15,7 @@ namespace UserList.Controllers
 
         //Create a object from user
         [BindProperty]
-        public User User { get; set; }
+        public new User User { get; set; }
 
         //Initialize the contructor. Used the dependency injection
         public UsersController(ApplicationDBContext db)
@@ -49,6 +49,34 @@ namespace UserList.Controllers
                 return NotFound();
             }
             //return the book that we found in the DB
+            return View(User);
+        }
+
+        //Post method
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Upsert()
+        {
+            //Here we can use the binded proerty of User Model
+            
+            //Check the Model state
+            if (ModelState.IsValid)
+            {
+                //check whether update or edit
+                if (User.ID == 0)
+                {
+                    //create
+                    _db.Users.Add(User);
+                }
+                else
+                {
+                    //update
+                    _db.Users.Update(User);
+                }
+                //changes save in the db
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
             return View(User);
         }
 
