@@ -1,6 +1,5 @@
 ﻿<!--We pass the User model from the controlle-->
 @model UserList.Models.User
-
 <!--We have to check it is add or edit using Model.ID-->
 
 <br />
@@ -62,7 +61,8 @@
     </form>
 </div>
 
-@section Scripts{ 
- <partial name="_ValidationScriptsPartial" />
+<!--Validation in the client side-->
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
 }
 
