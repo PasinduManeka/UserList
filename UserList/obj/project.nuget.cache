@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rzsM13McWIVyCLQAla2BmwJhgkVvJJjlQ5X7gThjUdAGN7Lbwg6Z3HoqGf8KcWFUo93YtsDwZ4uYNo66m4emJw==",
+  "dgSpecHash": "n7uQowoleXXIQpztvPL07hKoC2btY3lh+hwpTYI37phLeA9Ixz5cx5Mzl56I55Jw7mmCRpVBiRugcTd/CR20xw==",
   "success": true,
-  "projectFilePath": "D:\\Visual Studio Workspace 2\\UserList\\UserList\\UserList\\UserList.csproj",
+  "projectFilePath": "D:\\Visual Studio Workspace 2\\BookListMVC\\UserList\\UserList\\UserList.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\it18125580\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\3.1.1\\microsoft.aspnetcore.mvc.razor.extensions.3.1.1.nupkg.sha512",
     "C:\\Users\\it18125580\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\3.1.1\\microsoft.aspnetcore.mvc.razor.runtimecompilation.3.1.1.nupkg.sha512",

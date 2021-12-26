@@ -7,10 +7,10 @@
 <br />
 
 <div class="border container" style="padding:30px;">
-    <form method="post">
+    <form>
         @if (Model.ID != 0)
         {
-            <input type="hidden" asp-for="ID" />
+            <input asp-for="ID" type="hidden" id="id" />
         }
         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <!--Name-->
@@ -19,7 +19,7 @@
                 <label asp-for="Name"></label>
             </div>
             <div class="col-6">
-                <input asp-for="Name" class="form-control" />
+                <input  id="name" asp-for="Name" class="form-control" />
                 <!--To display the validation error-->
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
@@ -30,7 +30,7 @@
                 <label asp-for="Age"></label>
             </div>
             <div class="col-6">
-                <input asp-for="Age" class="form-control" />
+                <input id="age" asp-for="Age" class="form-control" />
                 <!--To display the validation error-->
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
@@ -41,7 +41,7 @@
                 <label asp-for="City"></label>
             </div>
             <div class="col-6">
-                <input asp-for="City" class="form-control" />
+                <input id="city" asp-for="City" class="form-control" />
                 <!--To display the validation error-->
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
@@ -49,7 +49,7 @@
         <div class="form-group row">
             <!--Add or Update-->
             <div class="col-3 offset-3">
-                <button type="submit" class="btn btn-outline-primary form-control">
+                <button type="button" onclick="BtnClick()" class="btn btn-outline-primary form-control">
                     @(Model.ID != 0 ? "Update" : "Create")
                 </button>
             </div>
@@ -63,6 +63,43 @@
 
 <!--Validation in the client side-->
 @section Scripts{
+    <script>
+        function BtnClick() {
+            //get the values from the input fields
+            var id = $("#id").val();
+            var name = $("#name").val();
+            var age =$("#age").val();
+            var city = $("#city").val();
+
+
+            var obj = {
+                ID: id,
+                Name: name,
+                Age: age,
+                City: city
+
+            }
+
+            //call the submitForm and pass the parameter
+            SubmitForm(obj)
+        }
+
+        function SubmitForm(obj) {
+            $.ajax({
+                url: "/Users/Upsert",
+                method: "POST",
+                data: obj,
+                success: function (data) {
+                    if (data.success) {
+                        toastr.success(data.message);
+                        setInterval('location.reload()', 1000);
+                    } else {
+                        toastr.error(data.message);
+                    }
+                }
+            }) 
+        }
+    </script>
     <partial name="_ValidationScriptsPartial" />
 }
 

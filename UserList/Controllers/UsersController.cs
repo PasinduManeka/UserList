@@ -54,7 +54,6 @@ namespace UserList.Controllers
 
         //Post method
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Upsert()
         {
             //Here we can use the binded proerty of User Model
@@ -67,18 +66,43 @@ namespace UserList.Controllers
                 {
                     //create
                     _db.Users.Add(User);
+                    //changes save in the db
+                    _db.SaveChanges();
+                    return Json(new { success = true, message = "Added successful" });
                 }
                 else
                 {
                     //update
                     _db.Users.Update(User);
+                    _db.SaveChanges();
+                    return Json(new { success = true, message = "Updated successful" });
                 }
                 //changes save in the db
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                //_db.SaveChanges();
+                //return Json(new { success = true, message = "Delete successful" });
+                //return RedirectToAction("Index");
             }
-            return View(User);
+            return Json(new { success = false, message = "Try Again!!" });
         }
+
+        /*[HttpPost]
+        public IActionResult AddUser()
+        {
+            Console.WriteLine(User.Name);
+            //Check the Model State
+            if (ModelState.IsValid)
+            {
+                if(User.ID == 0)
+                {
+                    _db.Users.Add(User);
+                }
+                else
+                {
+                    _db.Users.Update(User);
+                }
+            }
+            return Json(User);
+        }*/
 
         #region API Call
         //GET
