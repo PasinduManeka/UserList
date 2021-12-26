@@ -92,7 +92,7 @@
                 success: function (data) {
                     if (data.success) {
                         toastr.success(data.message);
-                        setInterval('location.reload()', 1000);
+                        setInterval('location.reload()', 500);
                     } else {
                         toastr.error(data.message);
                     }
